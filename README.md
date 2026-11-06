@@ -4,7 +4,7 @@
 
 Aplicativo Android (Kotlin + Jetpack Compose) desenvolvido para a **Global Solution 2026 – 2º semestre (FIAP)**, desafio **CitizenTech**, disciplina *Android Kotlin Developer*.
 
-**Repositório:** [https://github.com/Biloschycki/GS-ANDROID-KOTLIN-2-SEMESTRE](https://github.com/Biloschycki/GS-2SEMESTRE-ANDROD-KOTLIN)
+**Repositório:** [github.com/Biloschycki/GS-ANDROID-KOTLIN-2-SEMESTRE](https://github.com/Biloschycki/GS-ANDROID-KOTLIN-2-SEMESTRE)
 
 ## Integrantes
 
@@ -15,6 +15,23 @@ Aplicativo Android (Kotlin + Jetpack Compose) desenvolvido para a **Global Solut
 | Nicolas Varella Barros Padovam | RM556586 |
 
 ---
+
+## Atendimento aos requisitos da GS
+
+Resumo de onde cada critério da avaliação é atendido no código e qual evidência o comprova.
+
+| # | Critério | Como foi atendido | Código | Evidência |
+|---|---|---|---|---|
+| 1 | Contextualização e tela inicial | Nome (**Hora Certa**), objetivo e público na tela inicial; problema, público e ODS 3 e 10 na tela **Sobre** e neste README; identidade visual própria (verde-petróleo + âmbar, tipografia ampliada) e atalhos grandes para as funções | `app/src/main/java/br/com/fiap/horacerta/ui/inicio/InicioScreen.kt`, `app/src/main/java/br/com/fiap/horacerta/ui/sobre/SobreScreen.kt`, `app/src/main/java/br/com/fiap/horacerta/ui/theme/` | [02](docs/prints/02-inicio-vazio.png), [10](docs/prints/10-inicio-com-remedios.png), [22](docs/prints/22-sobre.png) |
+| 2 | Navegação (Navigation Compose, 3+ telas) | 5 telas com finalidades distintas: Início, Meus remédios (listagem), Cadastro/Edição, Detalhe (histórico) e Sobre. Rotas com argumento `id` (`LongType`) e retorno com mensagem para a tela anterior; o botão voltar nunca esvazia a pilha | `app/src/main/java/br/com/fiap/horacerta/ui/navigation/Screen.kt`, `app/src/main/java/br/com/fiap/horacerta/ui/navigation/AppNavHost.kt` | [13](docs/prints/13-meus-remedios.png), [16](docs/prints/16-editando.png), [18](docs/prints/18-detalhe-historico.png) |
+| 3 | Interface (Compose / Material 3) e feedback | `Scaffold`, `TopAppBar`, `Column`, `Row`, `Card`, `LazyColumn`, `OutlinedTextField`, `Button`, `Switch`, `RadioButton`, `AlertDialog`, `TimePicker`, `Snackbar`. Estados vazios ("Nenhum remédio cadastrado", "Nenhuma dose registrada") e Snackbars após cada ação | `app/src/main/java/br/com/fiap/horacerta/ui/comum/Componentes.kt` e telas em `app/src/main/java/br/com/fiap/horacerta/ui/` | [02](docs/prints/02-inicio-vazio.png), [14](docs/prints/14-lembrete-desligado.png), [20](docs/prints/20-excluido.png) |
+| 4 | Entidade, cadastro, ação extra, validação | Entidade `Medicamento` (nome, dosagem, hora, minuto, tipo de horário, intervalo, estoque, observação, lembrete…). Cadastro e listagem; ações extras: **marcar como tomado (TOMEI)**, **editar**, **excluir** e **ligar/desligar lembrete**. Validação de nome, dosagem, horário, recorrência e estoque | `app/src/main/java/br/com/fiap/horacerta/data/local/Medicamento.kt`, `app/src/main/java/br/com/fiap/horacerta/ui/formulario/ValidacaoFormulario.kt`, `app/src/main/java/br/com/fiap/horacerta/ui/formulario/FormularioViewModel.kt` | [28](docs/prints/28-validacao.png), [11](docs/prints/11-dose-tomada-fixo.png), [17](docs/prints/17-editado.png), [20](docs/prints/20-excluido.png) |
+| 5 | Persistência com Room | `AppDatabase` com as tabelas `medicamentos` e `registros_dose` (histórico, `ForeignKey` com `CASCADE`); DAO com `Flow`; registro de dose em `withTransaction`. Os dados permanecem após fechar e reabrir o app | `app/src/main/java/br/com/fiap/horacerta/data/local/`, `app/src/main/java/br/com/fiap/horacerta/data/repository/MedicamentoRepositoryImpl.kt` | [23](docs/prints/23-persistencia-app-fechado.png) → [24](docs/prints/24-persistencia-reabrindo.png) → [25](docs/prints/25-persistencia-dados-mantidos.png) |
+| 6 | Organização e estado (ViewModel) | Camadas `data` / `domain` / `ui`; um ViewModel por tela (`@HiltViewModel`) expondo `StateFlow`, coletado com `collectAsStateWithLifecycle`; o Room emite `Flow` e a UI se atualiza sozinha. Injeção de dependência com Hilt | `app/src/main/java/br/com/fiap/horacerta/ui/*/…ViewModel.kt`, `app/src/main/java/br/com/fiap/horacerta/di/` | Seção [Arquitetura](#arquitetura) |
+| 7 | Documentação e demonstração | Este README: problema, público, proposta, ODS, funcionalidades, tecnologias, execução, fluxo principal, 29 capturas reais e 3 vídeos | `README.md`, `docs/` | Seção [Evidências](#evidências-de-funcionamento) |
+| — | Extra (opcional) | Lembrete por alarme exato com notificação (**TOMEI** / **Lembrar em 10 min**), leitura em voz alta (TextToSpeech), horário fixo ou recorrência "a cada N horas", bloqueio de dose dobrada, testes unitários e instrumentados | `app/src/main/java/br/com/fiap/horacerta/lembrete/`, `app/src/main/java/br/com/fiap/horacerta/util/Recorrencia.kt`, `app/src/test/`, `app/src/androidTest/` | [27](docs/prints/27-notificacao-lembrete.png), [29](docs/prints/29-hora-de-tomar.png), [vídeos](docs/videos/) |
+
+**Escopo:** protótipo acadêmico. Os dados ficam só no aparelho (Room). Não há backend, login nem integração com farmácias, médicos ou serviços públicos, e o app não afirma ter essas integrações.
 
 ## Problema
 
@@ -219,14 +236,28 @@ O remédio "Roacutam", cadastrado com recorrência, continua salvo depois de o a
 
 ## Como executar
 
+**Requisitos:** Android Studio com suporte ao AGP 9.2, internet no primeiro build (para o Gradle baixar as dependências) e um emulador ou aparelho com **Android 7.0 (API 24) ou superior**.
+
+### Opção A: pelo arquivo .zip (entrega)
+
+1. **Extraia** o arquivo `.zip` para uma pasta do computador. No Windows: botão direito → *Extrair tudo...*. Não abra o projeto de dentro do .zip, porque o Android Studio não consegue compilar assim.
+2. Abra o **Android Studio** e escolha **File → Open** (ou **Open** na tela inicial).
+3. Selecione a pasta que contém os arquivos `settings.gradle.kts`, `build.gradle.kts` e a pasta `app`. Se, ao extrair, o Windows criar uma pasta dentro de outra com o mesmo nome, entre nela até achar esses arquivos.
+4. Se o Android Studio perguntar se confia no projeto, escolha **Trust Project**.
+5. Aguarde o **Gradle Sync** terminar (barra de progresso no rodapé). Na primeira vez, leva alguns minutos.
+6. Escolha o emulador ou o aparelho no topo e clique em ▶ **Run 'app'**.
+7. Na primeira abertura do app, **permita as notificações**.
+
+> Se o Sync falhar com erro de cache do Gradle ("Cannot load transformed entry..."), feche o Android Studio, apague a pasta `C:\Users\<seu usuário>\.gradle\caches\9.4.1` e abra o projeto de novo.
+
+### Opção B: clonando do GitHub
+
 1. Clone o repositório:
    ```
-   git clone https://github.com/Biloschycki/GS-2SEMESTRE-ANDROD-KOTLIN.git
+   git clone https://github.com/Biloschycki/GS-ANDROID-KOTLIN-2-SEMESTRE.git
    ```
-2. Abra o **Android Studio** (versão compatível com AGP 9.2) e escolha **Open** → pasta clonada (`GS-2SEMESTRE-ANDROD-KOTLIN`).
-3. Aguarde o **Gradle Sync** baixar as dependências.
-4. Rode no emulador ou em um aparelho com **Android 7.0 (API 24) ou superior** (botão ▶ *Run 'app'*).
-5. Na primeira abertura, **permita as notificações**.
+2. No Android Studio, escolha **File → Open** → pasta clonada (`GS-ANDROID-KOTLIN-2-SEMESTRE`).
+3. Siga a partir do passo 4 da opção A.
 
 ### Testando o lembrete rapidamente
 
