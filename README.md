@@ -4,7 +4,7 @@
 
 Aplicativo Android (Kotlin + Jetpack Compose) desenvolvido para a **Global Solution 2026 – 2º semestre (FIAP)**, desafio **CitizenTech**, disciplina *Android Kotlin Developer*.
 
-**Repositório:** [github.com/Biloschycki/GS-2SEMESTRE-ANDROD-KOTLIN](https://github.com/Biloschycki/GS-2SEMESTRE-ANDROD-KOTLIN)
+**Repositório:** [https://github.com/Biloschycki/GS-ANDROID-KOTLIN-2-SEMESTRE](https://github.com/Biloschycki/GS-2SEMESTRE-ANDROD-KOTLIN)
 
 ## Integrantes
 
