@@ -1,3 +1,6 @@
+
+
+
 # Hora Certa
 
 > Seu remédio na hora certa: sem esquecer e sem tomar dobrado.
@@ -175,6 +178,14 @@ Todas as capturas foram feitas no emulador (Medium Phone, API 37) e estão em [`
 | [lembrete-na-hora-com-voz.mp4](docs/videos/lembrete-na-hora-com-voz.mp4) | O app aguardando o horário (17:00). Ao chegar a hora, a notificação aparece com os botões **TOMEI** e **Lembrar em 10 min**, e o celular lê o lembrete em voz alta. |
 | [status-hora-de-tomar.mp4](docs/videos/status-hora-de-tomar.mp4) | Com dois remédios cadastrados, a Novalgina das 17:35 passa de "Ainda não é a hora" para **"Hora de tomar!"** exatamente na virada do minuto, junto com a notificação (por volta de 1:32 do vídeo). |
 | [botao-ouvir.mp4](docs/videos/botao-ouvir.mp4) | Botão **Ouvir** no cartão do remédio: o app lê o nome, a dose e a observação em voz alta. |
+
+https://github.com/user-attachments/assets/3a461b83-767c-4d51-b478-1425f362643f
+
+https://github.com/user-attachments/assets/e503b2a5-ce7a-46cc-9ada-8bc0d69e62a1
+
+https://github.com/user-attachments/assets/5691f78b-7e8e-4899-8447-f0ccc4362a02
+
+
 
 | Notificação do lembrete | Status "Hora de tomar!" |
 |---|---|
